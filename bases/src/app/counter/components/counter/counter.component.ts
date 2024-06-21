@@ -5,9 +5,9 @@ import { Component } from "@angular/core";
   selector: 'app-counter',
   template: `
     <h3>Counter: {{ counter }}</h3>
-    <button (click)="decrement()">-1</button>
-    <button (click)="reset()">Reset</button>
-    <button (click)="increment()">+1</button>
+    <button (click)="decrement()" class="btn btn-warning border mx-1">-1</button>
+    <button (click)="reset()" class="btn btn-terciary border mx-1">Reset</button>
+    <button (click)="increment()" class="btn btn-danger border mx-1">+1</button>
   `
 })
 export class CounterComponent {
