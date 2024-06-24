@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
 
 @Component({
@@ -12,20 +12,16 @@ import { Character } from '../interfaces/character.interface';
   <div class="row">
 
     <div class="col">
-
-      <app-dbz-list [characterList]="characters"></app-dbz-list>
-
-
+      <dbz-list [characterList]="characters"></dbz-list>
     </div>
 
     <div class="col">
-      <app-dbz-add-character></app-dbz-add-character>
+      <dbz-add-character (onNewCharacter)="onNewCharacter($event)"></dbz-add-character>
     </div>
 
   </div>
   `
 })
-
 export class MainPageComponent  {
 
   public characters: Character[] = [{
@@ -37,6 +33,13 @@ export class MainPageComponent  {
   },{
     name: 'Vegeta',
     power: 7500
+  }];
+
+
+  onNewCharacter( character : Character):void {
+      console.log("MainPgae")
+      console.log(character)
+
   }
-  ];
+
 }
