@@ -22,11 +22,13 @@ import { Character } from '../../interfaces/character.interface';
           class="form-control mb-2"
           placeholder="Poder">
 
-        <button type="submit" class="btn btn-primary" (click)="emitCharacter()">
+        <button type="submit" class="btn btn-primary border-b" (click)="emitCharacter()">
           Agregar
         </button>
 
-        <pre>{{ character | json}}</pre>
+
+
+        <!-- <pre>{{ character | json}}</pre> -->
 
       </form>
     `,
@@ -53,4 +55,5 @@ export class AddCharacterComponent {
 
     this.character = { name: '', power: 0 };
   }
+
 }

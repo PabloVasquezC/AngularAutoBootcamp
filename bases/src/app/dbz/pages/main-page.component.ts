@@ -12,7 +12,7 @@ import { Character } from '../interfaces/character.interface';
   <div class="row">
 
     <div class="col">
-      <dbz-list [characterList]="characters"></dbz-list>
+      <dbz-list [characterList]="characters" (onDelete)="onDeleteCharacter($event)"></dbz-list>
     </div>
 
     <div class="col">
@@ -40,6 +40,10 @@ export class MainPageComponent  {
 
     this.characters.push(character);
 
+  }
+
+  onDeleteCharacter( index:number ) {
+    this.characters.splice(index, 1);
   }
 
 }
