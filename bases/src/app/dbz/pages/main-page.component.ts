@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Component } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-dbz-main-page',
@@ -12,7 +13,8 @@ import { Character } from '../interfaces/character.interface';
   <div class="row">
 
     <div class="col">
-      <dbz-list [characterList]="characters" (onDelete)="onDeleteCharacter($event)"></dbz-list>
+      <dbz-list [characterList]="characters"
+                (onDelete)="onDeleteCharacter($event)"></dbz-list>
     </div>
 
     <div class="col">
@@ -24,26 +26,18 @@ import { Character } from '../interfaces/character.interface';
 })
 export class MainPageComponent  {
 
-  public characters: Character[] = [{
-    name: 'Krillin',
-    power: 1000
-  },{
-    name: 'Goku',
-    power: 9500
-  },{
-    name: 'Vegeta',
-    power: 7500
-  }];
+  constructor ( private dbzService: DbzService) {}
 
-
-  onNewCharacter( character : Character):void {
-
-    this.characters.push(character);
-
+  get characters(): Character[] {
+    return [...this.dbzService.characters];
   }
 
-  onDeleteCharacter( index:number ) {
-    this.characters.splice(index, 1);
+  onDeleteCharacter( id:string ):void {
+    this.dbzService.deleteCharacterById( id );
+  }
+
+  onNewCharacter( character:Character ):void {
+    this.dbzService.addCharacter(character);
   }
 
 }

@@ -23,7 +23,7 @@ import { Character } from "../../interfaces/character.interface";
           <span>{{ character.power }}</span>
         </div>
 
-        <button class="btn btn-danger" (click)="onDeleteCharacter(i)">X</button>
+        <button class="btn btn-danger" (click)="onDeleteCharacter( character.id )">X</button>
       </li>
     </ul>
     `,
@@ -39,7 +39,7 @@ export class ListComponent {
   ];
 
   @Output()
-  public onDelete : EventEmitter<number> = new EventEmitter();
+  public onDelete : EventEmitter<string> = new EventEmitter();
 
   public character : Character = {
     name: '',
@@ -47,7 +47,9 @@ export class ListComponent {
   }
 
 
-  onDeleteCharacter(index: number): void {
-    this.onDelete.emit( index );
+  onDeleteCharacter( id?: string): void {
+    if ( !id ) return;
+
+    this.onDelete.emit( id );
   }
 }
